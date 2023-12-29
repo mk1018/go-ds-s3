@@ -1,4 +1,4 @@
-module github.com/ipfs/go-ds-s3
+module github.com/mk1018/go-ds-s3
 
 go 1.20
 
@@ -191,3 +191,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/blake3 v1.2.1 // indirect
 )
+
+replace github.com/francoispqt/gojay => github.com/mk1018/gojay v0.0.2

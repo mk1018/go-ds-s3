@@ -6,7 +6,7 @@ WORKDIR /
 RUN apt update && apt install -y jq
 
 # Kubo build process
-# See details: https://github.com/ipfs/go-ds-s3
+# See details: https://github.com/mk1018/go-ds-s3
 ENV GO111MODULE on
 ENV GOPROXY direct
 
@@ -18,8 +18,8 @@ ENV SRC_DIR /kubo
 WORKDIR $SRC_DIR
 
 # Install the plugin and build ipfs
-RUN go get github.com/ipfs/go-ds-s3@latest
-RUN echo "\ns3ds github.com/ipfs/go-ds-s3/plugin 0" >> plugin/loader/preload_list
+RUN go get github.com/mk1018/go-ds-s3@latest
+RUN echo "\ns3ds github.com/mk1018/go-ds-s3/plugin 0" >> plugin/loader/preload_list
 RUN make build || : #first build will fail
 RUN go mod tidy
 RUN make build
@@ -38,7 +38,7 @@ COPY --from=builder $SRC_DIR/bin/container_init_run /usr/local/bin/container_ini
 RUN chmod 0755 /usr/local/bin/start_ipfs
 
 # We copy jq so we can manipulate the JSON config file easily in the init.d scripts
-COPY --from=builder /usr/bin/jq /usr/local/bin/jq 
+COPY --from=builder /usr/bin/jq /usr/local/bin/jq
 COPY --from=builder /usr/lib/*-linux-*/libjq.so.1 /usr/lib/
 COPY --from=builder /usr/lib/*-linux-*/libonig.so.5 /usr/lib/
 
