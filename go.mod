@@ -192,4 +192,4 @@ require (
 	lukechampine.com/blake3 v1.2.1 // indirect
 )
 
-replace github.com/francoispqt/gojay => github.com/mk1018/gojay v0.0.1
+replace github.com/francoispqt/gojay => github.com/mk1018/gojay v0.0.2
